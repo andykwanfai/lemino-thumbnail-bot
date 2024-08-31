@@ -1,0 +1,26 @@
+{
+  "name": "lemino-thumbnail-bot",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "webpack",
+    "deploy": "pnpm build && clasp push",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.45",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "gas-webpack-plugin": "^2.2.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "mp4box": "^0.5.2"
+  }
+}
