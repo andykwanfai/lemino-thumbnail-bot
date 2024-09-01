@@ -61,22 +61,25 @@ export class LeminoApp extends App {
     });
 
     return res.map(resource => {
-      let id, type, date;
+      let id, type, date, text;
       switch (resource.pit_git_type) {
         case 'WIZARD':
           id = resource.crid.replace('crid://plala.iptvf.jp/group/', '');
           type = LeminoResourceType.WIZARD;
           date = new Date(resource.update_date);
+          text = resource.title;
           break;
         case 'SERIES':
           id = resource.crid.replace('crid://plala.iptvf.jp/group/', '');
           type = LeminoResourceType.SERIES;
           date = new Date(resource.entry_date);
+          text = resource.title;
           break;
         case 'PIT':
           id = /#(\d+)/g.exec(resource.title)![1]!;
           type = LeminoResourceType.PIT;
           date = new Date(resource.display_start);
+          text = resource.title + '\n' + resource.synopsis_info.synopsis;
           break;
         default:
           throw new Error(`unknown pit_git_type: ${resource.pit_git_type}`);
@@ -88,7 +91,7 @@ export class LeminoApp extends App {
         app: this,
         tg: tg,
         metadata: { type: type },
-        text: resource.title,
+        text: text,
         media: this.constructMedia(resource),
       });
     });
@@ -152,7 +155,7 @@ export class LeminoApp extends App {
       case LeminoResourceType.SERIES:
         return record.sent_series_banner.split(',').includes(message.id as string);
       case LeminoResourceType.PIT:
-        return record.last_published_id >= message.id;
+        return parseInt(record.last_published_id as string) >= parseInt(message.id as string);
       default:
         throw new Error(`unknown pit_git_type: ${message.metadata['type']}`);
     }

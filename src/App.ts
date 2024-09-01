@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpFetchOptions, } from '../gas-telegram-bot
 import { Utils } from "../gas-telegram-bot-api/src/Utils";
 import { Message } from "./MessageV2";
 import { Logger } from "../gas-telegram-bot-api/src/Logger";
+import { FetchSetting } from "./fetch_settings";
 
 export interface IPublishRecord {
   last_published_at: string | number,
@@ -24,6 +25,7 @@ export interface IApp {
   default_fetch_blob?: boolean;
   send_raw_media?: boolean;
   metadata: { [key: string]: any };
+  fetch_setting: FetchSetting
 }
 export interface App extends IApp { }
 export abstract class App {
