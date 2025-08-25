@@ -42,6 +42,7 @@ export const FETCH_SETTINGS: { [id: string]: FetchSetting } = {
     name: "そこ曲がったら、櫻坂？",
     username: "b101acb",
     schedules: [],
+    default_recipients: TG_RECIPIENTS['SAKURA_DEFAULT'],
   },
 
   "b101b65": {
@@ -49,6 +50,7 @@ export const FETCH_SETTINGS: { [id: string]: FetchSetting } = {
     name: "ちょこさく",
     username: "b101b65",
     schedules: [],
+    default_recipients: TG_RECIPIENTS['SAKURA_DEFAULT'],
   },
 
   "b1015f0": {
@@ -56,6 +58,7 @@ export const FETCH_SETTINGS: { [id: string]: FetchSetting } = {
     name: "日向坂で会いましょう",
     username: "b1015f0",
     schedules: [],
+    default_recipients: TG_RECIPIENTS['HINATA_DEFAULT'],
   },
 
   "b101ae6": {
@@ -63,5 +66,6 @@ export const FETCH_SETTINGS: { [id: string]: FetchSetting } = {
     name: "もっと！日向坂になりましょう",
     username: "b101ae6",
     schedules: [],
+    default_recipients: TG_RECIPIENTS['HINATA_DEFAULT'],
   },
 }

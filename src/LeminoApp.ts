@@ -60,16 +60,19 @@ export class LeminoApp extends App {
       max_retry: this.max_retry,
     });
 
-    return res.map(resource => {
+    const messages: Message[] = [];
+    for (const resource of res) {
       let id, type, date, text;
       switch (resource.pit_git_type) {
         case 'WIZARD':
+          continue;
           id = resource.crid.replace('crid://plala.iptvf.jp/group/', '');
           type = LeminoResourceType.WIZARD;
           date = new Date(resource.update_date);
           text = resource.title;
           break;
         case 'SERIES':
+          continue;
           id = resource.crid.replace('crid://plala.iptvf.jp/group/', '');
           type = LeminoResourceType.SERIES;
           date = new Date(resource.entry_date);
@@ -85,7 +88,7 @@ export class LeminoApp extends App {
           throw new Error(`unknown pit_git_type: ${resource.pit_git_type}`);
       }
 
-      return new Message({
+      const message = new Message({
         id: id,
         date: date,
         app: this,
@@ -94,7 +97,9 @@ export class LeminoApp extends App {
         text: text,
         media: this.constructMedia(resource),
       });
-    });
+      messages.push(message);
+    }
+    return messages;
   }
 
   private constructMedia(resource: ChildResource) {
